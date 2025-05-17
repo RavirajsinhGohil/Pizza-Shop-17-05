@@ -68,7 +68,7 @@ function DefaultShowActiveCategory() {
     loadItems(categoryId, $('#SearchItems').val());
 }
 
-//modal data load
+//Item modifierGroup modal data load
 function loadModifiers(itemId) {
     $.get(`/OrderApp/GetItemModifiers?itemId=${itemId}`, function (data) {
         $('#ItemsDetails .modal-content').html(data);
@@ -103,7 +103,7 @@ $(document).on("click", ".option-card", function () {
 //for right side box of order
 // -- cart registry { key : { index , qty } } 
 const cartRegistry = new Map();   // key - { index , qty }
-let itemIndex = 1;
+let itemIndex = 0;
 
 // helper to build unique key
 function buildKey(name, mods) {
@@ -112,6 +112,7 @@ function buildKey(name, mods) {
 }
 
 $(document).on('click', '#addToOrderBtn', function () {
+    // index++;
 
     /* 1. Collect item & selected modifiers  */
     const selectedModifiers = [];
@@ -131,6 +132,7 @@ $(document).on('click', '#addToOrderBtn', function () {
     const basePrice = parseFloat($('#ItemRate').val());
     const qty = parseInt($('#itemQuantity').val()) || 1;
     const itemId = $("#ItemId").val();
+
     // const Instruction = $("#Instruction").val()
 
     /* 2. Build key & decide -- */
@@ -141,7 +143,7 @@ $(document).on('click', '#addToOrderBtn', function () {
         const rowInfo = cartRegistry.get(key);
 
         // Only increase by 1, don't add the full qty
-        rowInfo.qty = 1;
+        // rowInfo.qty = 1;
         rowInfo.qty += 1;
 
         // Ensure the updated qty doesn't exceed max quantity (Model.Quantity)
@@ -150,11 +152,11 @@ $(document).on('click', '#addToOrderBtn', function () {
         }
 
         // Update qty input in DOM
-        $([`data-key='${key}'`] .qty-input).val(rowInfo.qty);
+        $(`[data-key='${key}'] .qty-input`).val(rowInfo.qty);
 
         updateTotals();
         $('#ItemsDetails').modal('hide');
-        return;
+        return; 
     }
 
     /* 3. Brand‑new row → ask server for html  */
@@ -166,9 +168,11 @@ $(document).on('click', '#addToOrderBtn', function () {
             itemId: itemId,
             ItemName: itemName,
             BasePrice: basePrice,
-            Quantity: qty,
+            Quantity: 1,
+            MaxQuantity: qty, 
             Index: itemIndex,
-            SelectedModifiers: selectedModifiers
+            SelectedModifiers: selectedModifiers,
+            OrderedQuantity: 1,
         }),
         success: function (html) {
             // tag wrapper with the key so we can find it later
@@ -603,6 +607,7 @@ function loadOrderItems(orderId) {
             const renderPromises = orderItems.map(function (item, index) {
                 return renderOrderItem(item, index);
             });
+            itemIndex = orderItems.length + 1;
 
             Promise.all(renderPromises).then(function () {
                 updateTotals();
@@ -626,7 +631,8 @@ function renderOrderItem(item, index) {
             ItemName: item.itemName,
             Instruction: item.instruction || "",
             BasePrice: item.rate,
-            Quantity: item.quantity,
+            Quantity: item.Quantity,
+            MaxQuantity : item.maxQuantity,
             SelectedModifiers: item.modifiers || []
         }),
         success: function (partialHtml) {
@@ -636,4 +642,31 @@ function renderOrderItem(item, index) {
             console.error('Failed to render order item.');
         }
     });
+}
+
+function quantityChange(e){
+    var input = $(e.target);
+    var maxQuantity = input.attr("data-maxQuantity");
+    var currentQuantity = input.attr("data-currentValue");
+    var updatedQuantity = input.val();
+    
+    if (updatedQuantity > 0)
+    {
+        if (+updatedQuantity > +maxQuantity) {
+            toastr.warning(`You can select only ${maxQuantity} items`);
+            $(input).val(currentQuantity);
+        }else{
+            $(input).attr("data-currentValue",updatedQuantity);
+        }
+    }
+    else
+    {
+        if (+updatedQuantity < 1) {
+            toastr.warning("You must select at least 1 item");
+            $(input).val(1);
+        }else{
+            $(input).attr("data-currentValue",updatedQuantity);
+        }
+    }
+    
 }

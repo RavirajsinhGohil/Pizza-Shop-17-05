@@ -127,7 +127,7 @@ public class CustomerRepository : ICustomerRepository
             .ToListAsync();
         var pagination = new CustomerPaginationViewModel
         {
-            // SearchTerm = model.SearchTerm,
+            SearchTerm = model.SearchTerm,
             Page = model.Page,
             PageSize = model.PageSize,
             TotalItems = totalItems,

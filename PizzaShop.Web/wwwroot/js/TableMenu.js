@@ -101,11 +101,6 @@ $(document).ready(function () {
 //     });
 // });
 
-
-
-
-
-
 // Bootstrap form validation
 const form = document.getElementById("waitingTokenForm");
 form.addEventListener("submit", function (event) {

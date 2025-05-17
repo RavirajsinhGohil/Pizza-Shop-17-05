@@ -44,9 +44,11 @@ public class OrderItemForRowViewModel
     public int? ItemId { get; set; }
     public string? ItemName { get; set; }
     public int Quantity { get; set; }
+    public int MaxQuantity { get; set; }
     public decimal Rate { get; set; }
     public string? Instruction { get; set; }
     public int? ReadyQuantity { get; set; }
+    public int? OrderedQuantity { get; set; }
     public List<ModifierForMenuOrderViewModel> SelectedModifiers { get; set; } = new();
     public decimal ModifiersTotal => SelectedModifiers.Sum(m => m.Rate);
 }
@@ -58,6 +60,7 @@ public class RenderOrderItemRowRequest
     public string? ItemName { get; set; }
     public decimal BasePrice { get; set; }
     public int Quantity { get; set; }
+    public int MaxQuantity { get; set; }
     public int Index { get; set; }
     public string? Instruction { get; set; }
     public List<ModifierForMenuOrderViewModel> SelectedModifiers { get; set; } = new List<ModifierForMenuOrderViewModel>();
@@ -134,6 +137,7 @@ public class SaveOrderDetailViewModel
     public int ItemId { get; set; }
     public string? ItemName { get; set; }
     public int Quantity { get; set; }
+    public int MaxQuantity { get; set; }
     public decimal Rate { get; set; }
     public int? AvailableQuantity { get; set; }
     public List<SaveModifierViewModel>? Modifiers { get; set; }

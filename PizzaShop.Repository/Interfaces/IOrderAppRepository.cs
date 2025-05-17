@@ -52,7 +52,7 @@ public interface IOrderAppRepository
     Task<List<Orderdetail>> SaveOrderItemsAsync(SaveOrderRequestViewModel model);
     Task<Order> GetOrderByIdAsync(int orderId);
     Task<bool> DeleteOrderDetailByCompositeMatchAsync(DeleteOrderDetailRequest request);
-    Task<int?> GetReadyQuantity(int itemId, int Quantity);
+    Task<int?> GetReadyQuantity(int itemId, int orderId);
     Task<List<SaveOrderDetailViewModel>?> CompleteOrderItemsAsync(int orderId);
     Task<List<SaveOrderDetailViewModel>?> CancelOrderItemsAsync(int orderId);
 

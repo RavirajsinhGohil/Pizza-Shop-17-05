@@ -26,7 +26,7 @@ public class KOTOrderCardViewModel
 
     public string? OrderInstruction { get; set; }
 
-    public string? ItemInstruction { get; set; }
+    // public string? ItemInstruction { get; set; }
     public List<int> OrderDetailsIds { get; set; } = new();
     
     public List<KOTOrderItemViewModel> Items { get; set; } = new();
@@ -38,9 +38,10 @@ public class KOTOrderItemViewModel
     public int? Quantity { get; set; }
 
     public int? ItemId {get; set; }
+    public string? ItemInstruction {get; set; }
 
     // public int? PreparedQuantity {get; set;}
-    public KOTCategoryViewModel Category {get; set;} = new();
+    public KOTCategoryViewModel Category { get; set; } = new();
     public int? InProgressQuantity {get; set;}
     public List<KOTOrderModifierViewModel> Modifiers { get; set; } = new();
 

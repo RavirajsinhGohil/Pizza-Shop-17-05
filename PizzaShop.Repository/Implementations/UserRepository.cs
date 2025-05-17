@@ -66,7 +66,7 @@ public class UserRepository : IUserRepository
     public void AddUser(User user)
     {
         _dbo.Users.Add(user);
-        _dbo.SaveChanges();
+         _dbo.SaveChanges();
     }
 
     public void DeleteUser(User user)

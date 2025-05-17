@@ -383,8 +383,10 @@ public class OrderAppRepository : IOrderAppRepository
             .Select(img => new ModifiersGroupForMenuViewModel
             {
                 GroupName = img.Modifiergroup.Modifiername,
-                Min = 3,
-                Max = 4,
+                Min = img.Minquantity ?? 0,
+                Max = img.Maxquantity ?? 0,
+                // Min = 3,
+                // Max = 4,
                 Modifiers = img.Modifiergroup.Itemmodifiergroupmappings.Where(img => img.Isitemmodifiable == true).Select(mgm => new ModifiersItemForMenuViewModel
                 {
                     Id = mgm.Item.Itemid,
@@ -918,13 +920,13 @@ public class OrderAppRepository : IOrderAppRepository
         return false;
     }
 
-    public async Task<int?> GetReadyQuantity(int itemId, int Quantity)
+    public async Task<int?> GetReadyQuantity(int itemId, int orderId)
     {
         try
         {
             int? readyQuantity = await _dbo.Orderdetails
-                .Where(od => od.Itemid == itemId && od.Quantity == Quantity)
-                .Select(od => od.Availablequantity)
+                .Where(od => od.Itemid == itemId && od.Orderid == orderId)
+                .Select(od => od.Quantity)
                 .FirstAsync();
 
             return readyQuantity;

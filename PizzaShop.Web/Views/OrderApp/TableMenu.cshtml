@@ -1,3 +1,4 @@
+@using PizzaShop.Entity.ViewModel
 @model PizzaShop.Entity.ViewModel.OrderAppTableModuleViewModel
 
 @{
@@ -12,12 +13,6 @@
 
 <div class="container-fluid d-flex justify-content-between align-items-center mb-3">
     <h2 class="fw-bold custom-blue-color">Table View</h2>
-    @* <div class="d-flex gap-3 align-items-center mb-3">
-        <span class="badge bg-secondary">Available</span>
-        <span class="badge bg-primary">Selected</span>
-        <span class="badge bg-success">Assigned</span>
-        <span class="badge bg-info text-dark">Running</span>
-    </div> *@
     <ul class="list-inline d-flex flex-wrap justify-content-center justify-content-md-end mb-0">
         <li class="list-inline-item me-3">
             <span class="d-inline-block rounded-circle me-1  "
@@ -83,7 +78,7 @@
                 <div id="Floor_@section123.SectionId" class="accordion-collapse collapse ">
                     <div class="accordion-body">
                         <div class="d-flex row gap-3 flex-wrap ">
-                            @foreach (PizzaShop.Entity.ViewModel.TableCard? table in section123.Tables)
+                            @foreach (TableCard? table in section123.Tables)
                             {
                                 string? tableStatus = table.TableStatus;
                                 string? tableStatusClass = tableStatus switch
@@ -115,10 +110,10 @@
 
                                 <a href="@Link" style="text-decoration: none; height: 125px; width: 225px;"
                                     class="card col-1 p-0 table-card text-white border @tableStatusClass  @clickableClass"
-                                    data-table-id="@table.TableId" data-section="@section123.SectionName" style="width: 10rem;">
+                                    data-table-id="@table.TableId" data-section="@section123.SectionName">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col pe-0">
                                                 <h6 class="card-title fw-bold @tableStatusText">@table.TableName</h6>
                                                 <img src="~/images/icons/people.svg"
                                                     style="filter: brightness(0) saturate(50%) invert(20%) sepia(89%) hue-rotate(186deg) brightness(96%) contrast(102%);"
@@ -127,13 +122,32 @@
                                                     @table.Capacity
                                                 </div>
                                             </div>
-                                            <div class="col">
+                                            <div class="col ps-0">
                                                 @if(table.AssignedTime != null)
                                                 {
-                                                    TimeSpan timeSinceOrder = DateTime.Now - table.AssignedTime.Value;
-                                                    string? timeRemainingFormatted = $"{(int)timeSinceOrder.TotalDays} days {(int)timeSinceOrder.Hours} hours {(int)timeSinceOrder.Minutes} min {(int)timeSinceOrder.Seconds} sec";
+                                                    TimeSpan timeRemaining = DateTime.Now - table.AssignedTime.Value;
+                                                    string timeRemainingFormatted = "";
 
-                                                    <p class="card-text text-dark"><i class="bi bi-clock"></i>@timeRemainingFormatted</p>
+                                                    if (timeRemaining.TotalSeconds > 0)
+                                                    {
+                                                        List<string> parts = new List<string>();
+
+                                                        if (timeRemaining.Days > 0)
+                                                            parts.Add($"{timeRemaining.Days} day{(timeRemaining.Days > 1 ? "s" : "")}");
+                                                        if (timeRemaining.Hours > 0)
+                                                            parts.Add($"{timeRemaining.Hours} hour{(timeRemaining.Hours > 1 ? "s" : "")}");
+                                                        if (timeRemaining.Minutes > 0)
+                                                            parts.Add($"{timeRemaining.Minutes} minute{(timeRemaining.Minutes > 1 ? "s" : "")}");
+                                                        if (timeRemaining.Seconds > 0 || parts.Count == 0)
+                                                            parts.Add($"{timeRemaining.Seconds} second{(timeRemaining.Seconds > 1 ? "s" : "")}");
+
+                                                        timeRemainingFormatted = string.Join(" ", parts);
+                                                    }
+
+                                                    <div class="time-display d-flex align-items-center gap-1 flex-column mt-2">
+                                                        <img src="~/images/Download/stopwatch.svg" >
+                                                        <span class="time-text fw-semibold small text-center text-dark">@timeRemainingFormatted</span>
+                                                    </div>
                                                 }
                                             </div>
                                         </div>

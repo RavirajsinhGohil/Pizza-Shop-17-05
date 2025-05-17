@@ -12,9 +12,10 @@ C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop
 C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.AssemblyInfoInputs.cache
 C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.AssemblyInfo.cs
 C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.csproj.CoreCompileInputs.cache
-C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.csproj.CopyComplete
 C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.dll
 C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\refint\PizzaShop.Service.dll
 C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.pdb
 C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.genruntimeconfig.cache
 C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\ref\PizzaShop.Service.dll
+C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.sourcelink.json
+C:\Users\ravir\Downloads\Pizza Shop\PizzaShop.Service\obj\Debug\net7.0\PizzaSho.FFF490EF.Up2Date

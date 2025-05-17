@@ -41,6 +41,7 @@ public class OrderAppService : IOrderAppService
                     ItemId = od.Itemid,
                     ItemName = od.Item?.Itemname,
                     Quantity = od.Quantity,
+                    ItemInstruction = od.Iteminstruction,
                     // Category = ,
                     // Category.Id = od.Item.Categoryid,
                     // CategoryName = od.Item.Category?.Name,
@@ -60,6 +61,7 @@ public class OrderAppService : IOrderAppService
             KOTOrderCardViewModel? card = new KOTOrderCardViewModel
             {
                 OrderId = order.Orderid,
+                OrderInstruction = order.Admincomment,
                 SectionTable = new List<KOTOrderSectionTableViewModel>
             {
                 new() {
@@ -122,9 +124,10 @@ public class OrderAppService : IOrderAppService
                     Categoryid = categoryId,
                     CategoryName = category.Name,
                     Status = order.Status,
+                    OrderInstruction = order.Admincomment,
                     // OrderDetailsIds = order
                     // OrderInstruction = order.Orderinstruction,
-                    // card.ItemInstruction =
+                    // card.ItemInstruction = 
                     Items = order.Orderdetails
                         .Where(od => od.Item.Categoryid == categoryId) // Filter by category just in case
                         .Select(od => new KOTOrderItemViewModel
@@ -138,16 +141,14 @@ public class OrderAppService : IOrderAppService
                                             ModifierId = mod.Itemid,
                                             ModifierName = mod.Item?.Itemname
                                         }).ToList(),
-                            InProgressQuantity = inProgress ? od.Quantity - (od.Availablequantity ?? 0) : od.Availablequantity
-                            // Instructions = od.Instruction,
+                            InProgressQuantity = inProgress ? od.Quantity - (od.Availablequantity ?? 0) : od.Availablequantity,
+                            ItemInstruction = od.Iteminstruction
                             // Add more fields as needed from OrderDetail or Item
                         }).ToList(),
                 };
-
                 OrderCards.Add(card);
             }
         }
-
         return OrderCards;
     }
 
@@ -498,7 +499,7 @@ public class OrderAppService : IOrderAppService
     public async Task<OrderItemForRowViewModel?> RenderOrderItemRow(RenderOrderItemRowRequest request)
     {
         Console.WriteLine($"ItemId: {request.ItemId}, ItemName: {request.ItemName}, BasePrice: {request.BasePrice}, Quantity: {request.Quantity}, Index: {request.Index}, Instruction: {request.Instruction}, SelectedModifiers: {request.SelectedModifiers}");
-        int? readyQty = await _orderAppRepository.GetReadyQuantity(request.ItemId, request.Quantity);
+        int? readyQty = await _orderAppRepository.GetReadyQuantity(request.ItemId, request.OrderId);
 
         OrderItemForRowViewModel? viewModel = new()
         {
@@ -508,8 +509,9 @@ public class OrderAppService : IOrderAppService
             ItemName = request.ItemName,
             Instruction = request.Instruction ?? "",
             Rate = request.BasePrice,
-            Quantity = request.Quantity,
-            ReadyQuantity = readyQty ?? 0,
+            MaxQuantity = request.MaxQuantity,
+            Quantity = readyQty ?? 0,
+            OrderedQuantity = request.Quantity,
             SelectedModifiers = request.SelectedModifiers
         };
         return viewModel;
@@ -556,6 +558,7 @@ public class OrderAppService : IOrderAppService
             ItemId = (int)od.Itemid,
             ItemName = od.Item.Itemname,
             Quantity = od.Quantity,
+            MaxQuantity = Convert.ToInt32(od.Item.Quantity),
             Rate = od.Price,
             Modifiers = od.Ordermodifierdetails.Select(m => new SaveModifierViewModel
             {

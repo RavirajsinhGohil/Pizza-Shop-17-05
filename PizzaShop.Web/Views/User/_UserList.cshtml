@@ -1,6 +1,6 @@
 @model PizzaShop.Entity.ViewModel.UserPaginationViewModel;
 
-<div class="table-responsive" >
+<div class="table-responsive"  style="display: block; max-height: 400px !important; overflow-y: auto;">
 
     <table class="table fs-6">
         <thead>
@@ -36,7 +36,7 @@
                 <th class="user_list_font_color">Action</th>
             </tr>
         </thead>
-        <tbody  style="display: block; max-height: 400px !important; overflow-y: auto;">
+        <tbody >
             @foreach (var user in Model.Users)
             {
                 <tr class="userlist-row">

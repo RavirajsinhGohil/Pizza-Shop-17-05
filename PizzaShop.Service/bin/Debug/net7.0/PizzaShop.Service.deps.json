@@ -1314,7 +1314,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.0"
         },
         "runtime": {
-          "PizzaShop.Entity.dll": {}
+          "PizzaShop.Entity.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PizzaShop.Repository/1.0.0": {
@@ -1324,7 +1327,10 @@
           "PizzaShop.Entity": "1.0.0"
         },
         "runtime": {
-          "PizzaShop.Repository.dll": {}
+          "PizzaShop.Repository.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

@@ -47,16 +47,16 @@
         <div class="px-2">
             <span>@Model.ReadyQuantity</span>
             <input type="hidden" class="available-qty" value="@Model.ReadyQuantity" >
-            <div></div>
-            <span>@Model.Quantity</span>
             <div class="qty-box d-flex align-items-center">
                 <button class="btn btn-light" type="button"
-                    onclick="changeQuantity(@Model.Index, -1, @Model.Quantity)">-</button>
+                    onclick="changeQuantity(@Model.Index, -1, @Model.MaxQuantity)">-</button>
 
-                <input id="quantityInput_@Model.Index" class="qty-input text-center" type="number" max="@Model.Quantity" value="@Model.ReadyQuantity" readonly style="width: 36px;"/>
+                <input id="quantityInput_@Model.Index" class="qty-input text-center" onchange="quantityChange(event)" data-maxQuantity="@Model.MaxQuantity" data-currentValue="@Model.Quantity" type="number" max="@Model.MaxQuantity" value="@Model.Quantity" style="width: 36px;" />
 
-                <button class="btn btn-light" type="button" 
-                    onclick="changeQuantity(@Model.Index, 1, @Model.Quantity)">+</button>
+                <button class="btn btn-light" type="button"
+                        onclick="changeQuantity(@Model.Index, 1, @Model.MaxQuantity)">
+                    +
+                </button>
             </div>
         </div>
 
