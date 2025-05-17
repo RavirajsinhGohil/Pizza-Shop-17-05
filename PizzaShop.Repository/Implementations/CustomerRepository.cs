@@ -33,7 +33,6 @@ public class CustomerRepository : ICustomerRepository
     public async Task<CustomersListViewModel> GetCutomerByPaginationAsync(CustomerPaginationViewModel model)
     {
         IQueryable<Entity.Models.Customer>? query = _dbo.Customers.Include(c => c.Orders).AsQueryable();
-        // var query = _dbo.Orders.Include(o => o.Customer).Include(o => o.Payments).AsQueryable();
 
         if (model.SearchTerm != null)
         {
