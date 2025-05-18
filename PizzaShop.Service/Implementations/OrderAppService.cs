@@ -261,18 +261,18 @@ public class OrderAppService : IOrderAppService
 
         // if (order == null)
         // {
-            order = new Order
-            {
-                Customerid = customer.Customerid,
-                Createdat = DateTime.Now,
-                Createdby = 1,
-                Status = "Pending",
-                Paymentmode = "Pending",
-                Noofpersons = model.NoOfPersons,
-                // Tableid = tables.FirstOrDefault()?.Tableid,
-            };
+        order = new Order
+        {
+            Customerid = customer.Customerid,
+            Createdat = DateTime.Now,
+            Createdby = 1,
+            Status = "Pending",
+            Paymentmode = "Pending",
+            Noofpersons = model.NoOfPersons,
+            // Tableid = tables.FirstOrDefault()?.Tableid,
+        };
 
-            await _orderAppRepository.AddOrder(order);
+        await _orderAppRepository.AddOrder(order);
         // }
         // else
         // {
@@ -442,8 +442,24 @@ public class OrderAppService : IOrderAppService
 
     public List<Table> GetTables(int sectionId)
     {
-        return  _orderAppRepository.GetTables(sectionId);
-    }   
+        return _orderAppRepository.GetTables(sectionId);
+    }
+
+    public async Task<CustomerViewModel?> GetCustomerByEmail(string email)
+    {
+        Customer? customer = await _orderAppRepository.GetCustomerByEmail(email);
+        if (customer == null) return null;
+
+        CustomerViewModel? viewModel = new()
+        {
+            Customerid = customer.Customerid,
+            Email = customer.Email,
+            Firstname = customer.Firstname,
+            Lastname = customer.Lastname,
+            Phone = customer.Phone
+        };
+        return viewModel;
+    }
 
     // public List<Section> GetSections()
     // {
@@ -563,7 +579,7 @@ public class OrderAppService : IOrderAppService
             Modifiers = od.Ordermodifierdetails.Select(m => new SaveModifierViewModel
             {
                 ModifierId = m.Itemid ?? 0,
-                ModifierName =  _orderAppRepository.GetModifierNameById(m.Itemid),
+                ModifierName = _orderAppRepository.GetModifierNameById(m.Itemid),
                 Rate = m.Price
             }).ToList()
         }).ToList();

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\pizzashop.web.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\pizzashop.web.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\views\\orderapp\\_orderitemrow.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\views\\orderapp\\_orderitemrow.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -34,11 +38,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "PizzaShop.Web",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\PizzaShop.Web.csproj",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\PizzaShop.Web.csproj",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\PizzaShop.Web.csproj",
+              "RelativeToolTip": "PizzaShop.Web\\PizzaShop.Web.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-17T14:47:06.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "IOrderAppRepository.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Repository\\Interfaces\\IOrderAppRepository.cs",
               "RelativeDocumentMoniker": "PizzaShop.Repository\\Interfaces\\IOrderAppRepository.cs",
@@ -51,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "OrderAppRepository.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Repository\\Implementations\\OrderAppRepository.cs",
               "RelativeDocumentMoniker": "PizzaShop.Repository\\Implementations\\OrderAppRepository.cs",
@@ -64,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "OrderAppService.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Service\\Implementations\\OrderAppService.cs",
               "RelativeDocumentMoniker": "PizzaShop.Service\\Implementations\\OrderAppService.cs",
@@ -77,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ModifierSelectionModalViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Entity\\ViewModel\\ModifierSelectionModalViewModel.cs",
               "RelativeDocumentMoniker": "PizzaShop.Entity\\ViewModel\\ModifierSelectionModalViewModel.cs",
@@ -90,26 +106,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "_OrderItemRow.cshtml",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\OrderApp\\_OrderItemRow.cshtml",
               "RelativeDocumentMoniker": "PizzaShop.Web\\Views\\OrderApp\\_OrderItemRow.cshtml",
               "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\OrderApp\\_OrderItemRow.cshtml",
               "RelativeToolTip": "PizzaShop.Web\\Views\\OrderApp\\_OrderItemRow.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAApwDUAAABVAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADAAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-17T14:01:38.07Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "OrderAppController.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\OrderAppController.cs",
               "RelativeDocumentMoniker": "PizzaShop.Web\\Controllers\\OrderAppController.cs",
               "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\OrderAppController.cs",
               "RelativeToolTip": "PizzaShop.Web\\Controllers\\OrderAppController.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAnwAUBAABIAAAAAAAAAA==",
+              "ViewState": "AgIAAEEBAAAAAAAAAAAlwE4BAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-17T13:56:13.881Z",
               "EditorCaption": ""

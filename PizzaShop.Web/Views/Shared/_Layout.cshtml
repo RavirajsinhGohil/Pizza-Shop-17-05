@@ -1,5 +1,9 @@
 ﻿@{
     var roleId = Context.Request.Cookies["RoleId"];
+    // var permissions = HttpContext.Session.GetString("Permissions");
+    // var permissions = permissionsJson != null
+    //     ? JsonSerializer.Deserialize<List<string>>(permissionsJson)
+    //     : new List<string>();
 }
 
 <!DOCTYPE html>
@@ -122,10 +126,10 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" asp-controller="Profile" asp-action="Logout"
-                            data-bs-toggle="modal" data-bs-target="#logout">
+                        <a class="dropdown-item d-flex align-items-center"
+                            onclick="onenLogoutModal()"">
                             <div class="d-flex">
-                                <img class="img-fluid me-2" width="30" height="30"
+                                <img class="img-fluid me-2" width="30" height="30" 
                                     src="~/images/Download/box-arrow-left.svg" alt="">
                                 Logout
                             </div>
@@ -186,6 +190,10 @@
             var currentUrl = window.location.href;
             window.location.href = currentUrl;
             @* location.reload(); *@
+        }
+
+        function onenLogoutModal() {
+            $('#logout').modal('show');
         }
     </script>
 

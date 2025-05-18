@@ -29,5 +29,6 @@ public interface IMenuService
     Task<ModifierGroupViewModel> GetModifierGroupForEdit(int id);
     Task<MenuItemViewModel> GetDataForEditModifier(int id);
     Task<bool> UpdateModifier(MenuItemViewModel model);
+    Task<bool> DeleteModifier(int modifierId, int modifierGroupId);
 
 }

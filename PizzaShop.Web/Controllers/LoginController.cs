@@ -4,6 +4,7 @@ using PizzaShop.Service.Interfaces;
 using static PizzaShop.Service.Implementations.UserService;
 using PizzaShop.Entity.Constants;
 using PizzaShop.Entity.Models;
+using System.Text.Json;
 
 namespace PizzaShop.Web.Controllers;
 
@@ -43,6 +44,8 @@ public class LoginController : Controller
                 }
                 string token = _authService.GenerateJwtToken(user.Email, user.RoleId);
 
+                var userPermissions = await _userService.GetPermissionsByRoleAsync(user.Rolename);
+
                 CookieOptions? cookie = new CookieOptions
                 {
                     HttpOnly = true,
@@ -71,7 +74,9 @@ public class LoginController : Controller
                     Response.Cookies.Append("Email", model.Email, cookie);
                     cookie.Expires = DateTime.UtcNow.AddDays(30);
                 }
-                
+
+                HttpContext.Session.SetString("Permissions", JsonSerializer.Serialize(userPermissions));
+
                 TempData["success"] = Constants.LoginSuccessfull;
                 return RedirectToAction("Index", "Dashboard");
             }

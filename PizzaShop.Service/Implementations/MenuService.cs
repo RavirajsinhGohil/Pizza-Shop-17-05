@@ -173,7 +173,7 @@ public class MenuService : IMenuService
 
         foreach (int modifierGroupId in modifierGroupIds)
         {
-            if(modifierGroupId != null)
+            if (modifierGroupId != null)
             {
                 ModifierGroupViewModel? modifiergroup = modifierGroups.FirstOrDefault(mg => mg.ModifierGroupId == modifierGroupId);
 
@@ -544,4 +544,21 @@ public class MenuService : IMenuService
         _menuRepository.UpdateItem(item);
         return true;
     }
+
+    public async Task<bool> DeleteModifier(int modifierId, int modifierGroupId)
+    {
+        bool isDeleted = await _menuRepository.DeleteModifier(modifierId, modifierGroupId);
+        if (isDeleted)
+        {
+            Item item = _menuRepository.GetItemById(modifierId);
+            if (item != null)
+            {
+                item.Isdeleted = true;
+                _menuRepository.UpdateItem(item);
+            }
+            return true;
+        }
+        return false;
+    }
 }
+

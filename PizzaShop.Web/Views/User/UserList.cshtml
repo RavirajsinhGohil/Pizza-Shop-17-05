@@ -1,7 +1,11 @@
 @model PizzaShop.Entity.ViewModel.UserPaginationViewModel;
 
 @{
+
     ViewData["Title"] = "Users List";
+    var canAddEdit = Convert.ToBoolean(ViewData["CanAddEdit"]);
+    var canView = Convert.ToBoolean(ViewData["CanView"]);
+    var canDelete = Convert.ToBoolean(ViewData["CanDelete"]);
 }
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
@@ -11,9 +15,14 @@
         <div class="d-flex">
             @* <form method="get" action="@Url.Action("UserList")" class="d-flex search_bar"> *@
                 <input type="text" id="searchTerm" name="searchTerm" onkeyup="searchUsers()" class="form-control d-flex search_bar" placeholder="Search"
+    using PizzaShop.Entity.ViewModel;
+    using PizzaShop.Entity.ViewModel;
+    using System.Security.Permissions;
                     >
             @* </form> *@
-            <a  asp-controller="User" asp-action="AddUser" style="width: 150px !important;" class="btn custom-btn-bg text-white d-flex align-items-center ms-3">+Add User</a>
+            @if(canAddEdit){
+                <a  asp-controller="User" asp-action="AddUser" style="width: 150px !important;" class="btn custom-btn-bg text-white d-flex align-items-center ms-3">+Add User</a>
+            }
         </div>
     </div>
 

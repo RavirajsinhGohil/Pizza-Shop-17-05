@@ -953,3 +953,10 @@ input.qty-input {
     /* font-weight: 500; */
     /* color: #333333; */
 }
+
+/* OrderApp navbar menu */
+.btn-check:active+.btn-outline-light, .btn-check:checked+.btn-outline-light, .btn-outline-light.active, .btn-outline-light.dropdown-toggle.show, .btn-outline-light:active {
+    color: #fff !important;
+    background-color: #39A7ED !important;
+    border-color: #f8f9fa;
+}

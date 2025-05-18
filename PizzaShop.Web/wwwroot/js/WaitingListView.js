@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 type: 'GET',
                 data: { tokenId: tokenId },
                 success: function (response) {
-                    
                     // $('#waitingTokenModal').modal('show');
                     var MyModal = new bootstrap.Modal(document.getElementById('editWaitingTokenModal'));
                     MyModal.show();
@@ -88,3 +87,53 @@ function initLiveTimers() {
         setInterval(updateTimer, 1000);
     });
 }
+
+// get customer by email
+$(document).on('blur', '#customerEmailWaitingToken', function () {
+    var email = $(this).val();
+    if (email) {
+        $.ajax({
+            url: '/OrderApp/GetCustomerByEmail',
+            type: 'GET',
+            data: { email: email },
+            success: function (data) {
+                if (data) {
+                    $('#customerNameWaitingToken').val(data.firstname + ' ' + data.lastname);
+                    $('#customerPhoneWaitingToken').val(data.phone);
+                    // $('#customerTokenIdWaitingToken').val(data.id);
+                    toastr.success("Customer details loaded successfully!");
+                } else {
+                    $('#customerNameWaitingToken, #customerPhoneWaitingToken').val('');
+
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching customer details:', error);
+            }
+        });
+    }
+});
+
+// get customer by email for edit waiting token
+$(document).on('blur', '#editTokenEmail', function () {
+    var email = $(this).val();
+    if (email) {
+        $.ajax({
+            url: '/OrderApp/GetCustomerByEmail',
+            type: 'GET',
+            data: { email: email },
+            success: function (data) {
+                if (data) {
+                    $('#editTokenName').val(data.firstname + ' ' + data.lastname);
+                    $('#editTokenPhone').val(data.phone);
+                    toastr.success("Customer details loaded successfully!");
+                } else {
+                    $('#editTokenName, #editTokenPhone').val('');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching customer details:', error);
+            }
+        });
+    }
+});

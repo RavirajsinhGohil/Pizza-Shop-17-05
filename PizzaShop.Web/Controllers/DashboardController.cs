@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PizzaShop.Entity.ViewModel;
 using PizzaShop.Service.Interfaces;
 
 namespace PizzaShop.Web.Controllers;
 
-public class DashboardController: Controller
+[Authorize]
+public class DashboardController : Controller
 {
     private readonly IDashboardService _dashboardService;
     public DashboardController(IDashboardService dashboardService)
@@ -15,6 +17,10 @@ public class DashboardController: Controller
     [HttpGet]
     public async Task<IActionResult> Index(string filter = "Current Month")
     {
+        // if(User.Identity.IsAuthenticated == false)
+        // {
+        //     return RedirectToAction("Login", "Login");
+        // }
         DashboardViewModel? model = await _dashboardService.GetDashboardDataAsync(filter);
         return View(model);
     }

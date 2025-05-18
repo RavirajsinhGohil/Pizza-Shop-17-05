@@ -131,9 +131,8 @@ public class UserService : IUserService
 
             model.Rolename = Rolename.ToString();
             
-            var user = new User
+            User? user = new()
             {
-                // Userid = totalUsers + 1,
                 Firstname = model.Firstname,
                 Lastname = model.Lastname,
                 Email = model.Email,
@@ -145,7 +144,7 @@ public class UserService : IUserService
                 States = model.State,
                 City = model.City,
                 Address = model.Address,
-                // Zipcode = model.Zipcode,
+                Zipcode = model.Zipcode,
                 Createdby = model.RoleId,
                 Status = "Active",
                 Isdeleted = false,

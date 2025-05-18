@@ -24,6 +24,8 @@
     if (Model.Taxes.Count > 2) sgst = (decimal)Model.Taxes[2].TaxAmount;
 
     decimal total = (decimal)subtotal + (decimal)gst + (decimal)cgst + (decimal)sgst;
+
+    var year = DateTime.Now.Year;
 }
 
 @model PizzaShop.Entity.ViewModel.OrderDetailViewModel
@@ -218,7 +220,7 @@
                     </div>
                 </div>
                 <div>
-                    Invoice No. : @Model.order.InvoiceId
+                    Invoice No. : #DOM<span>@year</span><span>@Model.order.InvoiceId</span>
                 </div>
                 <div class="d-flex" style="display: flex !important;">
                     <div class="">

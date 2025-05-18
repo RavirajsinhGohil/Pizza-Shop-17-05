@@ -1,8 +1,24 @@
 $(document).ready(function () {
+    $('.assignBtnForSection').on('click', function () {
+        var sectionId = $(this).data('section-id');  // Get the section ID from the button
+        // var availableSections = @Html.Raw(Json.Serialize(assignModel.AvailableSections));  // Get the available sections
+        var availableSections = JSON.parse(document.getElementById('assignModal').dataset.sections);
 
-    // Trigger logic only when modal is fully shown
+        // Clear the dropdown options first
+        $('#SectionDropdown').empty().append('<option selected disabled>Choose a Section</option>');
+
+        // Populate the dropdown with available sections
+        availableSections.forEach(function (section) {
+            $('#SectionDropdown').append('<option value="' + section + '">' + section + '</option>');
+        });
+
+        // Optionally, set the current section as selected in the dropdown
+        if (sectionId) {
+            $('#sectionDropdown').val(sectionId);
+        }
+    });
+
     $('#waitingTokenModal').on('shown.bs.modal', function (event) {
-        debugger
         const button = event.relatedTarget; // Button that triggered the modal
         const sectionId = button.getAttribute('data-section-id'); // Get section id from data attribute
 
@@ -10,6 +26,7 @@ $(document).ready(function () {
         const form = document.getElementById("waitingTokenForm");
         if (form) {
             form.reset();
+            form.classList.remove('waitingTokenValidation');
             form.classList.remove('was-validated');
         }
 
@@ -17,152 +34,210 @@ $(document).ready(function () {
         $('#floatingSection').val(sectionId).change();
     });
 
+    //for click assign button only when available table is selected
+    $(".table-card.available-clickable").click(function () {
+        const $selectedCard = $(this);
+        const sectionBody = $selectedCard.closest(".accordion-body");
+        const assignButton = sectionBody.find(".assignBtnForSection");
+        const tableId = $selectedCard.data("table-id");
+        const sectionName = $selectedCard.data("section");
+        const sectionId = $selectedCard.data("sectionid");
 
-    // Handle form submission
-    $("#assignTableForm").submit(function (event) {
-        let isValid = true;
 
-        // Clear previous error messages
-        $(".text-danger").empty();
+        // If already selected, unselect it
+        if ($selectedCard.hasClass("selected-table")) {
+            // Unselect the card
+            $selectedCard.removeClass("selected-table").css("border", "2px solid transparent");
 
-        // Validate Email
-        const email = $("#Email").val();
-        if (!email) {
-            $("#emailValidation").text("Email is required.");
-            isValid = false;
-        } else if (!validateEmail(email)) {
-            $("#emailValidation").text("Please enter a valid email.");
-            isValid = false;
-        }
+            // Clear hidden fields
+            $("#SelectedTableId").val("");
+            $("#SectionName").val("");
 
-        // Validate Name
-        const name = $("#Name").val();
-        if (!name) {
-            $("#nameValidation").text("Name is required.");
-            isValid = false;
-        }
+            // Disable the assign button again
+            assignButton.prop("disabled", true);
+            assignButton.removeAttr("data-table-id").removeAttr("data-section");
+        } else {
+            // Unselect all
+            // @* $(".table-card.available-clickable").removeClass("selected-table").css("border", "2px solid transparent"); *@
 
-        // Validate Mobile
-        const mobile = $("#Mobile").val();
-        if (!mobile) {
-            $("#mobileValidation").text("Mobile is required.");
-            isValid = false;
-        } else if (!/^\d{10}$/.test(mobile)) {
-            $("#mobileValidation").text("Please enter a valid 10-digit mobile number.");
-            isValid = false;
-        }
+            // Highlight new selection
+            $selectedCard.addClass("selected-table").css("border", "2px solid #0d6efd");
 
-        // Validate NoOfPersons
-        const noOfPersons = $("#NoOfPersons").val();
-        if (!noOfPersons) {
-            $("#noOfPersonsValidation").text("Number of persons is required.");
-            isValid = false;
-        }
+            $(`#SelectedTableId_${sectionId}`).val(tableId);
+            $("#SectionName").val(sectionName);
 
-        // Validate Section
-        const sectionName = $("#SectionDropdown").val();
-        if (!sectionName) {
-            $("#sectionValidation").text("Please select section.");
-            isValid = false;
-        }
-
-        // If form is not valid, prevent submission
-        if (!isValid) {
-            event.preventDefault();
+            $(".assignBtnForSection").prop("disabled", true);
+            assignButton.prop("disabled", false)
+                .attr("data-table-id", tableId)
+                .attr("data-section", sectionName);
         }
     });
+});
 
-    // Email validation function
-    function validateEmail(email) {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailRegex.test(email);
+$(".accordion-button").click(function (e) {
+    const target = $(this).data("bs-target");
+    $(".accordion-collapse").not(target).collapse("hide");
+    $(target).collapse("toggle");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // const assignButtons = document.querySelectorAll(".open-assign-offcanvas"); 
+    const assignButtons = document.querySelectorAll(".assignBtnForSection");
+
+
+    assignButtons.forEach(button => {
+        button.addEventListener("click", handleAssignButtonClick);
+    });
+
+    function handleAssignButtonClick() {
+        const sectionId = $(this).data('section-id');
+        const sectionName = this.getAttribute("data-section");
+        // const tableId = this.getAttribute("data-table-id");
+        const selectedCards = document.querySelectorAll('.table-card.selected-table');
+        const selectedTableIds = Array.from(selectedCards).map(card => card.getAttribute('data-table-id'));
+
+        const tableIdsString = selectedTableIds.join(',');
+
+        const assignOffcanvas = document.querySelector("#assignOffcanvas");
+        if (!assignOffcanvas) {
+            console.warn("Offcanvas element not found.");
+            return;
+        }
+
+        // Fill basic table and section inputs
+        setInput(assignOffcanvas, "#SectionName", sectionName);
+        setInput(assignOffcanvas, "#SelectedTableId", tableIdsString);
+
+
+        // Load waiting list for section
+        fetch(`/OrderApp/GetWaitingCustomers?sectionId=${sectionId}`)
+            .then(response => response.json())
+            .then(customers => {
+                const listContainer = document.querySelector("#waitinglistCustomerDeatil");
+                if (!listContainer) {
+                    console.warn("Customer list container not found.");
+                    return;
+                }
+
+                if (!Array.isArray(customers) || customers.length === 0) {
+                    listContainer.innerHTML = `<p class="text-muted">No customers found.</p>`;
+                    return;
+                }
+
+                listContainer.innerHTML = renderCustomerTable(customers, tableIdsString, sectionName);
+                setupCustomerSelection(assignOffcanvas);
+            })
+            .catch(err => {
+                console.error("Failed to fetch waiting list:", err);
+            });
+    }
+
+    function setInput(container, selector, value) {
+        const input = container.querySelector(selector);
+        if (input) {
+            input.value = value || "";
+        } else {
+            console.warn(`Input ${selector} not found in container.`);
+        }
+    }
+
+    function renderCustomerTable(customers, selectedTableId, sectionName) {
+        return `
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">No Of Person</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${customers.map(customer => {
+            const customerData = {
+                tokenId: customer.waitingTicketId,
+                customerId: customer.id,
+                name: customer.name,
+                email: customer.email,
+                mobile: customer.mobile,
+                noOfPersons: customer.noOfPersons,
+                sectionId: customer.sectionId,
+                sectionName: sectionName,
+                selectedTableId: selectedTableId,
+            };
+
+            return `
+                                    <tr>
+                                        <td class="text-center align-middle">
+                                            <input class="form-check-input RadionBtn" type="radio" name="radioDefault"
+                                                id="radioDefault${customer.id}"
+                                                data-obj='${JSON.stringify(customerData)}'>
+                                        </td>
+                                        <td class="table-row text-center">#${customer.id}</td>
+                                        <td class="table-row text-center">${customer.name}</td>
+                                        <td class="table-row text-center">${customer.noOfPersons}</td>
+                                    </tr>
+                                `;
+        }).join("")}
+                        </tbody>
+                    </table>
+            `;
+    }
+
+
+    function setupCustomerSelection(assignOffcanvas) {
+        const radios = document.querySelectorAll(".RadionBtn");
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", () => {
+                const dataJson = radio.getAttribute("data-obj");
+                if (!dataJson) {
+                    console.warn("No customer data attached to radio button.");
+                    return;
+                }
+
+                let customerData;
+                try {
+                    customerData = JSON.parse(dataJson);
+                } catch (e) {
+                    console.error("Failed to parse customer data JSON:", e);
+                    return;
+                }
+
+                setInput(assignOffcanvas, "#Email", customerData.email);
+                setInput(assignOffcanvas, "#Name", customerData.name);
+                setInput(assignOffcanvas, "#Mobile", customerData.mobile);
+                setInput(assignOffcanvas, "#NoOfPersons", customerData.noOfPersons);
+                setInput(assignOffcanvas, "#SectionId", customerData.sectionId);
+                setInput(assignOffcanvas, "#SelectedTableId", customerData.selectedTableId);
+                setInput(assignOffcanvas, "#SectionName", customerData.sectionName);
+                setInput(assignOffcanvas, "#WaitingTokenId", customerData.tokenId);
+                setInput(assignOffcanvas, "#CustomerId", customerData.customerId);
+                setInput(assignOffcanvas, "#OrderId", customerData.orderId);
+
+                // Set dropdown if exists
+                const sectionDropdown = document.querySelector("#SectionDropdown");
+                if (sectionDropdown && customerData.sectionName) {
+                    sectionDropdown.value = customerData.sectionName;
+                }
+            });
+        });
     }
 });
 
-// const waitingTokenButtons = document.querySelectorAll(".btn-outline-primary");
+$("#assignOffcanvas").on("shown.bs.offcanvas", function () {
+    const selectedTableId = $("#SelectedTableId").val();
+    const sectionName = $("#SectionName").val();
 
-// waitingTokenButtons.forEach(button => {
-//     button.addEventListener("click", function () {
-//         debugger
-//         const sectionId = button.getAttribute("data-section-id");
-
-//         const form = document.getElementById("waitingTokenForm");
-//         form.reset(); // reset before setting dropdown
-//         form.classList.remove('was-validated');
-
-//         const dropdown = document.getElementById("floatingSection");
-//         // if (dropdown) {
-//         //     dropdown.value = sectionId;
-//         //     // Trigger change in case any validation or plugin is watching
-//         //     dropdown.dispatchEvent(new Event('change'));
-//         // }
-
-
-//     });
-// });
-
-// Bootstrap form validation
-const form = document.getElementById("waitingTokenForm");
-form.addEventListener("submit", function (event) {
-    if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-    } else {
-        event.preventDefault();
-        submitWaitingTokenForm();
-    }
-    form.classList.add("was-validated");
+    // Set the values in the offcanvas
+    $("#SelectedTableId").val(selectedTableId);
+    $("#SectionName").val(sectionName);
+    $("#SectionDropdown").val(sectionName);
 });
 
-$("#waitingTokenForm").submit(function (event) {
-    let isValid = true;
-
-    // Clear previous error messages
-    $(".text-danger").empty();
-
-    // Validate Email
-    const email = $("#Email").val();
-    if (!email) {
-        $("#emailValidation").text("Email is required.");
-        isValid = false;
-    } else if (!validateEmail(email)) {
-        $("#emailValidation").text("Please enter a valid email.");
-        isValid = false;
-    }
-
-    // Validate Name
-    const name = $("#Name").val();
-    if (!name) {
-        $("#nameValidation").text("Name is required.");
-        isValid = false;
-    }
-
-    // Validate Mobile
-    const mobile = $("#Mobile").val();
-    if (!mobile) {
-        $("#mobileValidation").text("Mobile is required.");
-        isValid = false;
-    } else if (!/^\d{10}$/.test(mobile)) {
-        $("#mobileValidation").text("Please enter a valid 10-digit mobile number.");
-        isValid = false;
-    }
-
-    // Validate NoOfPersons
-    const noOfPersons = $("#NoOfPersons").val();
-    if (!noOfPersons) {
-        $("#noOfPersonsValidation").text("Number of persons is required.");
-        isValid = false;
-    }
-
-    // Validate Section
-    const sectionName = $("#SectionDropdown").val();
-    if (!sectionName) {
-        $("#sectionValidation").text("Please select section.");
-        isValid = false;
-    }
-
-    // If form is not valid, prevent submission
-    if (!isValid) {
-        event.preventDefault();
-    }
+$("#accordion").on("shown.bs.collapse", function () {
+    selectedTableIds = [];
+    $(".table-card").removeClass("selected-table").css("border", "2px solid transparent");
+    // $(".assignBtnForSection").prop("disabled", true);
+    $("#SelectedTableId").val("");
 });

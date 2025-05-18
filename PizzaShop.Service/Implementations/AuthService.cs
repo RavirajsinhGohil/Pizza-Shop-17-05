@@ -12,6 +12,7 @@ using PizzaShop.Repository.Interfaces;
 using PizzaShop.Entity.Models;
 using PizzaShop.Entity.ViewModel;
 using PizzaShop.Service.Interfaces;
+using System.Text.Json;
 
 namespace PizzaShop.Service.Implementations;
 
@@ -32,7 +33,8 @@ public class AuthService : IAuthService
     public async Task<UserViewModel> Login(string email, string password)
     {
         User user = await _userRepository.CheckUserEmailAndPassword(email, password);
-        if(user == null)
+        Role role = _userRepository.GetRoleById(user.Roleid);
+        if (user == null)
         {
             return null;
         }
@@ -42,7 +44,7 @@ public class AuthService : IAuthService
             Lastname = user.Lastname,
             Username = user.Username,
             Phone = user.Phone,
-            // Rolename = user.Role.Rolename,
+            Rolename = role.Rolename,
             RoleId = user.Roleid,
             Country = user.Country,
             State = user.States,
@@ -57,6 +59,7 @@ public class AuthService : IAuthService
     public string GenerateJwtToken(string email, int? RoleId)
     {
         var Rolename = _dbo.Roles.Where(r => r.Roleid == RoleId).Select(r => r.Rolename).FirstOrDefault();
+        
         var claims = new[]
         {
             new Claim(ClaimTypes.Email, email),

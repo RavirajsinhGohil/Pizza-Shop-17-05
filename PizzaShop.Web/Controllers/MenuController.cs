@@ -5,6 +5,7 @@ using PizzaShop.Entity.Models;
 using PizzaShop.Entity.Constants;
 using PizzaShop.Service.Implementations;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 
 namespace PizzaShop.Web.Controllers;
@@ -27,6 +28,17 @@ public class MenuController : Controller
         try
         {
             MenuItemViewModel viewModel = await _menuService.GetMenuModel(categoryid);
+            
+            string? permissionsJson = HttpContext.Session.GetString("Permissions");
+            List<PermissionsViewModel>? permission = permissionsJson != null
+                ? JsonSerializer.Deserialize<List<PermissionsViewModel>>(permissionsJson)
+                : new List<PermissionsViewModel>();
+
+            PermissionsViewModel? permissionData = permission.Where(p => p.PermissionName == "Menu").FirstOrDefault();
+            ViewData["CanAddEdit"] = permissionData.CanAddEdit;
+            ViewData["CanView"] = permissionData.CanView;
+            ViewData["CanDelete"] = permissionData.CanDelete;
+
             return View(viewModel);
         }
         catch (Exception ex)
@@ -381,6 +393,30 @@ public class MenuController : Controller
             else
             {
                 return Json(new { success = false });
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return RedirectToAction("Menu", "Menu");
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> DeleteModifier(int modifierId, int modifierGroupId)
+    {
+        try
+        {
+            bool isDeleted = await _menuService.DeleteModifier(modifierId, modifierGroupId);
+            if (isDeleted == true)
+            {
+                // TempData["success"] = Constants.ModifierDeleted;
+                return RedirectToAction("Menu");
+            }
+            else
+            {
+                // TempData["error"] = Constants.ErrorInDeleteModifier;
+                return RedirectToAction("Menu");
             }
         }
         catch (Exception ex)

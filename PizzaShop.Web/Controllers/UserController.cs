@@ -3,9 +3,12 @@ using PizzaShop.Entity.ViewModel;
 using PizzaShop.Service.Implementations;
 using PizzaShop.Service.Interfaces;
 using PizzaShop.Entity.Constants;
+using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PizzaShop.Web.Controllers;
 
+[Authorize]
 public class UserController : Controller
 {
     private readonly ILogger<LoginController> _logger;
@@ -32,17 +35,25 @@ public class UserController : Controller
             return PartialView("_UserList", paginatedUsers);
         }
 
+        string? permissionsJson = HttpContext.Session.GetString("Permissions");
+        List<PermissionsViewModel>? permission = permissionsJson != null
+            ? JsonSerializer.Deserialize<List<PermissionsViewModel>>(permissionsJson)
+            : new List<PermissionsViewModel>();
+
+        PermissionsViewModel? permissionData = permission.Where(p => p.PermissionName == "Users").FirstOrDefault();
+        ViewData["CanAddEdit"] = permissionData.CanAddEdit;
+        ViewData["CanView"] = permissionData.CanView;
+        ViewData["CanDelete"] = permissionData.CanDelete;
         return View(paginatedUsers);
     }
 
-    // {CustomAuthorize("Users", "CanAddEdit")}
+    [CustomAuthorize("Users", "CanAddEdit")]
     [HttpGet]
     public IActionResult AddUser()
     {
         return View();
     }
 
-    [CustomAuthorize("Users", "CanAddEdit")]
     [HttpPost]
     public async Task<IActionResult> AddUser(AddUserViewModel model)
     {
@@ -89,7 +100,6 @@ public class UserController : Controller
         return View(model);
     }
 
-    [CustomAuthorize("Users", "CanAddEdit")]
     [HttpPost]
     public IActionResult EditUser(EditUserViewModel model, int Userid)
     {
@@ -136,6 +146,17 @@ public class UserController : Controller
         {
             return new RedirectToRouteResult(new { Controller = "ErrorPages", action = "ShowError", statusCode = "404" });
         }
+
+        string? permissionsJson = HttpContext.Session.GetString("Permissions");
+        List<PermissionsViewModel>? permission = permissionsJson != null
+            ? JsonSerializer.Deserialize<List<PermissionsViewModel>>(permissionsJson)
+            : new List<PermissionsViewModel>();
+
+        PermissionsViewModel? permissionData = permission.Where(p => p.PermissionName == "RoleAndPermission").FirstOrDefault();
+        ViewData["CanAddEdit"] = permissionData.CanAddEdit;
+        ViewData["CanView"] = permissionData.CanView;
+        ViewData["CanDelete"] = permissionData.CanDelete;
+
         return View(permissions);
     }
 
@@ -152,7 +173,10 @@ public class UserController : Controller
         }
 
         bool result = await _userService.UpdateRolePermissionsAsync(updatedPermissions);
-
+        if (result)
+        {
+            HttpContext.Session.SetString("Permissions", JsonSerializer.Serialize(updatedPermissions));
+        }
         return Json(new { success = result });
     }
 

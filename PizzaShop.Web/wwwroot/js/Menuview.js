@@ -265,7 +265,7 @@ $('body').on('click', '.editCategoryBtn', function (e) {
         data: { id: itemId },
         success: function (response) {
             var data = response.data;
-
+            $('#editCategoryModal').modal('show');
             $("#editCategoryId").val(data.menucategoryid);
             $("#editCategoryName").val(data.categoryname);
             $("#editCategoryDescription").val(data.description);
@@ -441,6 +441,7 @@ $('body').on('click', '.edit-icon-modifier', function (e) {
         success: function (response) {
             $('#EditModifierModal').modal('show');
             $('#EditModifierModal').html(response);
+            $.validator.unobtrusive.parse('#EditModifierModal .modal-content');
         },
         error: function (xhr, status, error) {
             console.error('Error:', error);
@@ -640,7 +641,11 @@ $(document).on('click', "#confirmBulkDeleteModifiersBtn", function () {
 
 // @* ************* *@
 
-
+// Modal open add category
+function openAddCategoryModal() {
+    var addCategoryModal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
+    addCategoryModal.show();
+}
 
 var modifierGroupForAdd = [];
 //For append Modifier Groups in New Item Modal
@@ -792,7 +797,7 @@ function addItem() {
             Max: max
         });
     });
-    debugger;
+
 
     let customSwitchNewItem = $("#newItemAvailability").is(":checked");
     // let uploadImageForNewItem = $("#newItemImage");
@@ -900,7 +905,7 @@ $('body').on('click', '.edit-icon', function (e) {
             var editItemModal = new bootstrap.Modal(document.getElementById('EditItemModal'));
             editItemModal.show();
             $("#EditItemModal").html(response);
-
+            $.validator.unobtrusive.parse('#EditItemModal .modal-content');
             var ids = $("#editItemModifierGroupIdsForEdit").val() || [];
             var idList = [];
             if (ids.length !== 0) {
@@ -1223,6 +1228,8 @@ $(document).on('click', "#addModifiersInGroup", function () {
     $("#addExistingModifiersForm").trigger('reset');
     $('#addExistingModal').modal('show');
 
+    loadModifiers(1, $('#pageSizesForAddExistingModifiers').val());
+
     // For check all existing Modifiers
     selectedModifiersForAdd.forEach(function (modifierName, modifierId) {
         if (existingModifiersForAdd.includes(modifierId)) {
@@ -1258,11 +1265,12 @@ $(document).on('click', "#saveAddExistingModifiersForAdd", function () {
     });
 });
 
-// Initialize pagination when the modal is shown
-$('#addExistingModal').on('shown.bs.modal', function () {
-    loadModifiers(1, $('#pageSizesForAddExistingModifiers').val());
-    // bindPaginationEvents();
-});
+// Initialize pagination when the modal is shown for add modifier group
+// $('#addExistingModal').on('shown.bs.modal', function () {
+//     debugger;
+//     loadModifiers(1, $('#pageSizesForAddExistingModifiers').val());
+//     // bindPaginationEvents();
+// });
 
 function openAddModifierGroupModal() {
     $("#addModifierGroupModal").modal("show");
@@ -1527,3 +1535,31 @@ $(document).on('change','.editItemImage', function () {
         messageDivForEdit.textContent = '';
     }
 });
+
+function openDeleteCategoryModal(categoryId) {
+    $("#deleteCategoryModal").modal("show");
+    $("#deleteCategoryId").val(categoryId);
+    $("#deleteCategoryLink").attr("href", `/Menu/DeleteCategory?categoryId=${categoryId}`);
+}
+
+function openAddMenuItemModal() {
+    $("#addMenuItemModal").modal("show");
+}
+
+function openDeleteItemModal(itemId) {
+    $("#deleteItemModal").modal("show");
+    $("#deleteItemLink").attr("href", `/Menu/DeleteMenuItem?itemId=${itemId}`);
+}
+
+function openDeleteModifierGroupModal(modifierGroupId) {
+    $("#deleteModifierGroupModal").modal("show");
+    $("#deleteModifierGroupLink").attr("href", `/Menu/DeleteModifierGroup?modifierGroupId=${modifierGroupId}`);
+}
+
+function openDeleteModifierModal(modifierId, modifierGroupId) {
+    debugger;
+    $("#deleteModifierModal").modal("show");
+    let deleteModifierId = $("#deleteModifierId");
+    deleteModifierId.href = `/Menu/DeleteModifier?modifierId=${modifierId}&modifierGroupId=${modifierGroupId}`;
+    // $("#deleteModifierLink").attr("href", `/Menu/DeleteModifier?modifierId=${modifierId}&modifierGroupId=${modifierGroupId}`);
+}

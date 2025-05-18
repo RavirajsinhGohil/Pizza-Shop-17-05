@@ -110,7 +110,7 @@ public class OrderAppController : Controller
         }
 
         // Return to the menu page with the orderId
-        return RedirectToAction("MenuMenu", new { searchText = "", categoryId = 0 , orderId = orderId });
+        return RedirectToAction("MenuMenu", new { searchText = "", categoryId = 0, orderId = orderId });
     }
 
     #endregion
@@ -226,7 +226,14 @@ public class OrderAppController : Controller
         return Json(tables);
     }
 
-    #endregion 
+    [HttpGet]
+    public async Task<IActionResult> GetCustomerByEmail(string? email)
+    {
+        CustomerViewModel? customer = await _orderAppService.GetCustomerByEmail(email);
+        return Json(customer);
+    }
+
+    #endregion
 
     #region Menu
 
@@ -234,7 +241,7 @@ public class OrderAppController : Controller
     public async Task<ActionResult> MenuMenu(string? searchText, int categoryId = 0, int? orderId = null)
     {
         CategoryItemsForOrderMenuViewModel? model = await _orderAppService.GetCategoryItemsForOrderMenu(searchText, categoryId, orderId);
-        
+
         // Ajax item‑grid refresh
         if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             return PartialView("_ItemCardsPartial", model.Items);
@@ -333,7 +340,7 @@ public class OrderAppController : Controller
     {
         try
         {
-            List<SaveOrderDetailViewModel>? orderItems = await _orderAppService.GetOrderDetailsById(orderId);            
+            List<SaveOrderDetailViewModel>? orderItems = await _orderAppService.GetOrderDetailsById(orderId);
             return Ok(orderItems);
         }
         catch (Exception)

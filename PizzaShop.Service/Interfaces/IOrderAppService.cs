@@ -33,6 +33,7 @@ public interface IOrderAppService
     Task<bool> DeleteWaitingToken(int tokenId);
     Task<List<Section>> GetSections();
     List<Table> GetTables(int sectionId);
+    Task<CustomerViewModel?> GetCustomerByEmail(string email);
     
     #endregion
 

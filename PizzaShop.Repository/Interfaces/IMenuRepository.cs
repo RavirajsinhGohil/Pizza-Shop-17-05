@@ -37,4 +37,5 @@ public interface IMenuRepository
     Task<int> GetTotalCountOfItems();
     Task<int> GetTotalCountOfModifiers();
     Task<List<Itemmodifiergroupmapping>> GetModifierGroupsForEditItem(int itemId);
+    Task<bool> DeleteModifier(int modifierId, int modifierGroupId);
 }

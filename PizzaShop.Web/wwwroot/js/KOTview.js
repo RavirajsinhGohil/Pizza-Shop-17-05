@@ -107,7 +107,7 @@ $(document).on('click', '.openOrderModal', function () {
                 </td>
                 <td class="input-group quantity-control" style="width: 120px;">
                     <button class="btn btn-sm" type="button" onclick="decrement(this)">-</button>
-                    <input type="number" class="form-control p-0 border-none text-center" value="0" min="1" max="${item.inProgressQuantity}" readonly />
+                    <input type="number" class="form-control p-0 border-none bg-white text-center" value="0" min="1" max="${item.inProgressQuantity}"  />
                     <button class="btn btn-sm" type="button" onclick="increment(this)">+</button>
                 </td>
             </tr>
@@ -129,6 +129,8 @@ $(document).on('click', '#markReadyBtn', function () {
         toastr.error("Please select at least one item to Mark as Ready.");
         return;
     }
+
+    debugger;
 
     $.ajax({
         url: `/OrderApp/MarkAsReady?orderId=${orderId}`,

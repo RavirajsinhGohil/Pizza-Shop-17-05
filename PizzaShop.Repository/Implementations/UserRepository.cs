@@ -87,6 +87,8 @@ public class UserRepository : IUserRepository
             .OrderBy(rp => rp.Permissionid)
             .Select(rp => new PermissionsViewModel
             {
+                RoleName = role.Rolename,
+                RoleId = rp.Roleid,
                 PermissionId = rp.Permissionid,
                 PermissionName = rp.Permissionname,
                 CanView = rp.Canview,

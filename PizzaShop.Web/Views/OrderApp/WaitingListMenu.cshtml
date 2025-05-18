@@ -61,19 +61,19 @@
                 <input type="hidden" name="SectionId" id="SectionId" />
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="email" asp-for="WaitingToken.Email" class="form-control" id="floatingEmail" placeholder="Email" />
+                        <input type="email" asp-for="WaitingToken.Email" class="form-control" id="customerEmailWaitingToken" placeholder="Email" />
                         <label for="floatingEmail">Email*</label>
                         <span asp-validation-for="WaitingToken.Email" class="text-danger"></span>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" asp-for="WaitingToken.Name" class="form-control" id="floatingName" placeholder="Name" />
+                        <input type="text" asp-for="WaitingToken.Name" class="form-control" id="customerNameWaitingToken" placeholder="Name" />
                         <label for="floatingName">Name*</label>
                         <span asp-validation-for="WaitingToken.Name" class="text-danger"></span>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" asp-for="WaitingToken.Phone" class="form-control" id="floatingPhone"
+                        <input type="text" asp-for="WaitingToken.Phone" class="form-control" id="customerPhoneWaitingToken"
                             placeholder="Mobile Number" pattern="^[0-9]{10}$" />
                         <label for="floatingPhone">Mobile Number*</label>
                         <span asp-validation-for="WaitingToken.Phone" class="text-danger"></span>

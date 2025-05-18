@@ -97,16 +97,26 @@
                         {
                             if (tax.Isdefault == true)
                             {
-                                <div class="d-flex justify-content-between text-muted">
-                                    @tax.Taxname 
-                                    <span class="default-tax-amount">₹@tax.Taxvalue</span>
-                                </div>
+                                if(tax.Taxtype == "Percentage")
+                                {
+                                    <div class="d-flex justify-content-between defaultTax  text-muted" data-tax-id="@tax.Taxid">
+                                        @tax.Taxname 
+                                        <span class="default-tax-amount taxPercentage">@tax.Taxvalue%</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="d-flex justify-content-between defaultTax  text-muted" data-tax-id="@tax.Taxid">
+                                        @tax.Taxname 
+                                        <span class="default-tax-amount taxFixed">₹@tax.Taxvalue</span>
+                                    </div>
+                                }
                             }
                             else
                             {
                                 <div class="d-flex justify-content-between align-items-center text-muted">
                                     <div class="form-check">
-                                        <input class="form-check-input tax-checkbox" type="checkbox" value="@tax.Taxvalue" onchange="updateTotals()">1
+                                        <input class="form-check-input tax-checkbox" type="checkbox" value="@tax.Taxvalue" onchange="updateTotals()">
                                         a<label class="form-check-label">
                                             @tax.Taxname
                                         </label>
@@ -225,7 +235,7 @@
 
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn custom-btn-bg text-white">Save</button>
-                    <button type="button" class="btn custom-blue-border ms-2" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn custom-blue-border custom-blue-color ms-2" data-bs-dismiss="modal">Cancel</button>
                 </div>
 
             </form>

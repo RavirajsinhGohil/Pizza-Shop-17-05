@@ -110,7 +110,7 @@ public class MenuRepository : IMenuRepository
     public async Task<MenuItemViewModel> GetItemsByCategoryAsync(int categoryid, string searchTerm, int page, int pageSize)
     {
         IQueryable<Item>? query = _dbo.Items
-                        .Where(c => c.Categoryid == categoryid && c.Isdeleted == false && c.Ismodifiable == false );
+                        .Where(c => c.Categoryid == categoryid && c.Isdeleted == false && c.Ismodifiable == false);
 
         if (!string.IsNullOrEmpty(searchTerm))
         {
@@ -328,7 +328,7 @@ public class MenuRepository : IMenuRepository
 
     public Itemmodifiergroupmapping GetItemModifierGroupMappingsById(int modifierId, int modifierGroupId)
     {
-        Itemmodifiergroupmapping mapping = _dbo.Itemmodifiergroupmappings.FirstOrDefault(i => i.Itemid == modifierId && i.Modifiergroupid == modifierGroupId);
+        Itemmodifiergroupmapping mapping = _dbo.Itemmodifiergroupmappings.FirstOrDefault(i => i.Itemid == modifierId && i.Modifiergroupid == modifierGroupId && i.Isitemmodifiable == true);
         return mapping;
     }
 
@@ -360,7 +360,7 @@ public class MenuRepository : IMenuRepository
 
     public async Task<List<ModifierGroupViewModel>> GetModifierGroupsForEditModifier()
     {
-        return  _dbo.Modifiergroups
+        return _dbo.Modifiergroups
                     .Where(m => !m.Isdeleted)
                     .Select(m => new ModifierGroupViewModel
                     {
@@ -393,4 +393,18 @@ public class MenuRepository : IMenuRepository
         }
 
     }
+
+    public async Task<bool> DeleteModifier(int modifierId, int modifierGroupId)
+    {
+        Itemmodifiergroupmapping modifier = _dbo.Itemmodifiergroupmappings.FirstOrDefault(i => i.Itemid == modifierId
+        && i.Modifiergroupid == modifierGroupId && i.Isitemmodifiable == true);
+        if (modifier != null)
+        {
+            _dbo.Itemmodifiergroupmappings.Remove(modifier);
+            await _dbo.SaveChangesAsync();
+            return true;
+        }
+        return false;
+    }
+
 }

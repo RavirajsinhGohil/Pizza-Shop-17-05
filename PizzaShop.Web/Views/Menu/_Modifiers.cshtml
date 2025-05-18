@@ -28,7 +28,7 @@
                         <th scope="row" style="border-top: 1px solid rgb(182, 177, 177);">
                             <input class="form-check-input ModifiersCheck" type="checkbox" data-id="@modifier.ModifierId"
                                 value="@modifier.ModifierId">
-                            <input type="hidden" value="@modifier.ModifierGroupId" id="ModifiersCheck">
+                            <input type="hidden" value="@modifier.ModifierGroupId" >
                         </th>
                         <td style=" border-top: 1px solid rgb(182, 177, 177);">
                             @* <img src="~/@item.Itemimage" class="me-2" style="width: 40px; height: 40px;" alt="abcd"> *@
@@ -42,11 +42,11 @@
                                 data-id="@modifier.ModifierId" title="Edit">
                                 <img src="~/images/Download/pencil.svg" alt="">
                             </a>
-                            <a class="btn btn-primary bg-white delete_btn px-2" title="Delete" data-bs-toggle="modal"
-                                data-bs-target="#deleteModifier_@modifier.ModifierId">
+                            <a href="" class="btn btn-primary bg-white delete_btn px-2" title="Delete" id="deleteModifierLink"
+                                onclick="openDeleteModifierModal(@modifier.ModifierId, @modifier.ModifierGroupId)">
                                 <img src="~/images/Download/trash.svg" width="20px" alt="delete">
                             </a>
-                            <div class="modal fade" id="deleteModifier_@modifier.ModifierId" tabindex="-1"
+                            <div class="modal fade" id="deleteModifierModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">

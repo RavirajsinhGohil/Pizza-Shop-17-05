@@ -18,13 +18,12 @@ public class EditUserViewModel
 
     [Required(ErrorMessage = "Email is required")]
     // [EmailAddress(ErrorMessage = "Invalid Email Address")]
-    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in|net)$", ErrorMessage = "Not a valid Email Address")]
+    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in|net)$", ErrorMessage = "Invalid Email")]
     public string? Email { get; set; }
 
     [Required(ErrorMessage = "Phone is required")]
-    [Phone(ErrorMessage = "Invalid phone ")]
-    [MinLength(10, ErrorMessage = "Phone number must be at least of 10 characters")]
-    [MaxLength(10, ErrorMessage = "Phone number must be a maximum of 10 characters")]
+    [MaxLength(10, ErrorMessage = "Phone must be maximum of 10 characters")]
+    [RegularExpression(@"^\(?([6-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Invalid Phone")]
     // [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")] 
     public string? Phone { get; set; }
 
@@ -46,7 +45,7 @@ public class EditUserViewModel
 
     // [Required(ErrorMessage = "Zip is Required")]
     // public int? Zipcode { get; set; }
-    [Required(ErrorMessage = "Zipcode is Required.")]
+    [Required(ErrorMessage = "Zipcode is required")]
     [RegularExpression(@"^(?!000000)\d{6}$", ErrorMessage = "Zipcode must be 5 or 6 digits.")]
     public string? Zipcode { get; set; }
 

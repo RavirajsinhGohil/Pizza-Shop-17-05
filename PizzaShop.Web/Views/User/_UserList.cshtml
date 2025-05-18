@@ -1,6 +1,12 @@
 @model PizzaShop.Entity.ViewModel.UserPaginationViewModel;
 
-<div class="table-responsive"  style="display: block; max-height: 400px !important; overflow-y: auto;">
+@{
+    var canAddEdit = Convert.ToBoolean(ViewData["CanAddEdit"]);
+    var canView = Convert.ToBoolean(ViewData["CanView"]);
+    var canDelete = Convert.ToBoolean(ViewData["CanDelete"]);
+}
+
+<div class="table-responsive" style="display: block; max-height: 400px !important; overflow-y: auto;">
 
     <table class="table fs-6">
         <thead>
@@ -33,23 +39,24 @@
                     </a>
                 </th>
                 <th class="user_list_font_color">Status</th>
-                <th class="user_list_font_color">Action</th>
+                @if(canAddEdit || canDelete)
+                {
+                    <th class="user_list_font_color">Action</th>
+                }
             </tr>
         </thead>
-        <tbody >
+        <tbody>
             @foreach (var user in Model.Users)
             {
                 <tr class="userlist-row">
                     <td>
-                        @if(user.Profileimagepath != null)
+                        @if (user.Profileimagepath != null)
                         {
-                            <img class="rounded-circle" width="25px" height="25px"
-                                src="@user.Profileimagepath" alt="">
+                            <img class="rounded-circle" width="25px" height="25px" src="@user.Profileimagepath" alt="">
                         }
                         else
                         {
-                            <img class="rounded-circle" width="25px" height="25px"
-                                src="~/images/Default_pfp.svg.png" alt="">
+                            <img class="rounded-circle" width="25px" height="25px" src="~/images/Default_pfp.svg.png" alt="">
                         }
                         @* <img class="rounded-circle" width="20px" height="20px" src="" alt=""> *@
                     </td>
@@ -64,16 +71,21 @@
                     </td>
                     <td>
                         <div class="d-flex">
-                            <a class="d-flex align-items-center" title="Edit" asp-controller="User" asp-action="EditUser"
-                                asp-route-Userid="@user.Userid">
-                                <img src="~/images/Download/pencil.svg" alt="">
-                            </a>
-                            <div>
-                                <a class="btn btn-primary bg-white delete_btn" title="Delete" data-bs-toggle="modal"
-                                    data-bs-target="#userdelete_@user.Userid">
-                                    <img src="~/images/Download/trash.svg" alt="">
+                            @if (canAddEdit)
+                            {
+                                <a class="d-flex align-items-center" title="Edit" asp-controller="User" asp-action="EditUser"
+                                    asp-route-Userid="@user.Userid">
+                                    <img src="~/images/Download/pencil.svg" alt="">
                                 </a>
-
+                            }
+                            <div>
+                                @if (canDelete)
+                                {
+                                    <a class="btn btn-primary bg-white delete_btn" title="Delete" data-bs-toggle="modal"
+                                        data-bs-target="#userdelete_@user.Userid">
+                                        <img src="~/images/Download/trash.svg" alt="">
+                                    </a>
+                                }
                                 <div class="modal fade" id="userdelete_@user.Userid" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -95,7 +107,8 @@
                                                 <div class=" mt-3">
                                                     <a href="@Url.Action("DeleteUser", new { Userid = user.Userid })"
                                                         class="btn custom-btn-bg text-white">Yes</a>
-                                                    <a type="submit" data-bs-dismiss="modal" class="btn custom-blue-border custom-blue-color cancel-btn-color ms-1">No</a>
+                                                    <a type="submit" data-bs-dismiss="modal"
+                                                        class="btn custom-blue-border custom-blue-color cancel-btn-color ms-1">No</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +126,8 @@
     <ul class="pagination justify-content-end mb-0">
         <li class="d-flex align-items-center pe-3">Items per page</li>
         <li class="d-flex align-items-center pe-3" style="border-radius: 5px; height: 40px;">
-            <select id="itemsPerPage" style="border-radius: 5px; height: 40px;" onchange="loadUsers('', 1, this.value, '@Model.SortBy', '@Model.SortOrder', )">
+            <select id="itemsPerPage" style="border-radius: 5px; height: 40px;"
+                onchange="loadUsers('', 1, this.value, '@Model.SortBy', '@Model.SortOrder', )">
                 <option value="5" selected="@(Model.PageSize == 5)">5</option>
                 <option value="10" selected="@(Model.PageSize == 10)">10</option>
                 <option value="15" selected="@(Model.PageSize == 15)">15</option>

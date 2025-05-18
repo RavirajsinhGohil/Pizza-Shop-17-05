@@ -3,8 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\pizzashop.web.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\pizzashop.web.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\views\\menu\\_editmenuitemmodal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\views\\menu\\_editmenuitemmodal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\views\\menu\\menu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\views\\menu\\menu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\controllers\\menucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\controllers\\menucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5DF9CB-2425-43CA-B19F-E23D2193726F}|PizzaShop.Service\\PizzaShop.Service.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.service\\implementations\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5DF9CB-2425-43CA-B19F-E23D2193726F}|PizzaShop.Service\\PizzaShop.Service.csproj|solutionrelative:pizzashop.service\\implementations\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\views\\user\\userlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\views\\user\\userlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5DF9CB-2425-43CA-B19F-E23D2193726F}|PizzaShop.Service\\PizzaShop.Service.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.service\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5DF9CB-2425-43CA-B19F-E23D2193726F}|PizzaShop.Service\\PizzaShop.Service.csproj|solutionrelative:pizzashop.service\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5DF9CB-2425-43CA-B19F-E23D2193726F}|PizzaShop.Service\\PizzaShop.Service.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.service\\implementations\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5DF9CB-2425-43CA-B19F-E23D2193726F}|PizzaShop.Service\\PizzaShop.Service.csproj|solutionrelative:pizzashop.service\\implementations\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\views\\user\\permissions.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|solutionrelative:pizzashop.web\\views\\user\\permissions.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DC872A86-F186-4048-AA90-DDA0950F59FC}|PizzaShop.Web\\PizzaShop.Web.csproj|c:\\users\\ravir\\downloads\\pizza shop\\pizzashop.web\\views\\orderapp\\_orderitemrow.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -43,18 +91,175 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PizzaShop.Web",
-              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\PizzaShop.Web.csproj",
-              "RelativeDocumentMoniker": "PizzaShop.Web\\PizzaShop.Web.csproj",
-              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\PizzaShop.Web.csproj",
-              "RelativeToolTip": "PizzaShop.Web\\PizzaShop.Web.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-17T14:47:06.443Z",
+              "Title": "_EditMenuItemModal.cshtml",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\Menu\\_EditMenuItemModal.cshtml",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Views\\Menu\\_EditMenuItemModal.cshtml",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\Menu\\_EditMenuItemModal.cshtml",
+              "RelativeToolTip": "PizzaShop.Web\\Views\\Menu\\_EditMenuItemModal.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANcAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-18T11:06:08.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Menu.cshtml",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\Menu\\Menu.cshtml",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Views\\Menu\\Menu.cshtml",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\Menu\\Menu.cshtml",
+              "RelativeToolTip": "PizzaShop.Web\\Views\\Menu\\Menu.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-18T11:03:27.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MenuController.cs",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\MenuController.cs",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Controllers\\MenuController.cs",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\MenuController.cs",
+              "RelativeToolTip": "PizzaShop.Web\\Controllers\\MenuController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwBkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T11:03:20.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "PizzaShop.Web\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-18T10:25:55.159Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "UserList.cshtml",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\User\\UserList.cshtml",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Views\\User\\UserList.cshtml",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\User\\UserList.cshtml",
+              "RelativeToolTip": "PizzaShop.Web\\Views\\User\\UserList.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-18T10:17:41.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Service\\Implementations\\UserService.cs",
+              "RelativeDocumentMoniker": "PizzaShop.Service\\Implementations\\UserService.cs",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Service\\Implementations\\UserService.cs",
+              "RelativeToolTip": "PizzaShop.Service\\Implementations\\UserService.cs",
+              "ViewState": "AgIAAEsBAAAAAAAAAAAMwF8BAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T09:57:35.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Service\\Interfaces\\IUserService.cs",
+              "RelativeDocumentMoniker": "PizzaShop.Service\\Interfaces\\IUserService.cs",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Service\\Interfaces\\IUserService.cs",
+              "RelativeToolTip": "PizzaShop.Service\\Interfaces\\IUserService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAgwB4AAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T09:56:45.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "PizzaShop.Web\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-18T09:53:34.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "PizzaShop.Web\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAgwE0AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T09:52:52.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Service\\Implementations\\AuthService.cs",
+              "RelativeDocumentMoniker": "PizzaShop.Service\\Implementations\\AuthService.cs",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Service\\Implementations\\AuthService.cs",
+              "RelativeToolTip": "PizzaShop.Service\\Implementations\\AuthService.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAMwEEAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T09:34:12.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Program.cs",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Program.cs",
+              "RelativeToolTip": "PizzaShop.Web\\Program.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAAAF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T09:32:55.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Permissions.cshtml",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\User\\Permissions.cshtml",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Views\\User\\Permissions.cshtml",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\User\\Permissions.cshtml",
+              "RelativeToolTip": "PizzaShop.Web\\Views\\User\\Permissions.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-18T09:26:55.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "PizzaShop.Web\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\UserController.cs",
+              "RelativeToolTip": "PizzaShop.Web\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAIwKAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T09:26:41.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "IOrderAppRepository.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Repository\\Interfaces\\IOrderAppRepository.cs",
               "RelativeDocumentMoniker": "PizzaShop.Repository\\Interfaces\\IOrderAppRepository.cs",
@@ -62,12 +267,11 @@
               "RelativeToolTip": "PizzaShop.Repository\\Interfaces\\IOrderAppRepository.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAowCcAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T14:10:30.556Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-17T14:10:30.556Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 18,
               "Title": "OrderAppRepository.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Repository\\Implementations\\OrderAppRepository.cs",
               "RelativeDocumentMoniker": "PizzaShop.Repository\\Implementations\\OrderAppRepository.cs",
@@ -75,12 +279,11 @@
               "RelativeToolTip": "PizzaShop.Repository\\Implementations\\OrderAppRepository.cs",
               "ViewState": "AgIAAIkDAAAAAAAAAAAMwJoDAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T14:08:53.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-17T14:08:53.376Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 16,
               "Title": "OrderAppService.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Service\\Implementations\\OrderAppService.cs",
               "RelativeDocumentMoniker": "PizzaShop.Service\\Implementations\\OrderAppService.cs",
@@ -93,7 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 14,
               "Title": "ModifierSelectionModalViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Entity\\ViewModel\\ModifierSelectionModalViewModel.cs",
               "RelativeDocumentMoniker": "PizzaShop.Entity\\ViewModel\\ModifierSelectionModalViewModel.cs",
@@ -101,12 +304,11 @@
               "RelativeToolTip": "PizzaShop.Entity\\ViewModel\\ModifierSelectionModalViewModel.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAawCcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T14:05:18.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-17T14:05:18.813Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 13,
               "Title": "_OrderItemRow.cshtml",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Views\\OrderApp\\_OrderItemRow.cshtml",
               "RelativeDocumentMoniker": "PizzaShop.Web\\Views\\OrderApp\\_OrderItemRow.cshtml",
@@ -119,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 15,
               "Title": "OrderAppController.cs",
               "DocumentMoniker": "C:\\Users\\ravir\\Downloads\\Pizza Shop\\PizzaShop.Web\\Controllers\\OrderAppController.cs",
               "RelativeDocumentMoniker": "PizzaShop.Web\\Controllers\\OrderAppController.cs",

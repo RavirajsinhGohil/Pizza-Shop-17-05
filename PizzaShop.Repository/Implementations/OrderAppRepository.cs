@@ -175,7 +175,7 @@ public class OrderAppRepository : IOrderAppRepository
             // _dbo.Customers.Add(customer);
             // _dbo.SaveChanges();
         }
-        
+
         Waitingticket? waitingToken = new()
         {
             Customerid = customer.Customerid,
@@ -315,21 +315,24 @@ public class OrderAppRepository : IOrderAppRepository
 
     public async Task<List<Section>> GetSections()
     {
-        return  _dbo.Sections
+        return _dbo.Sections
         .Where(s => s.Isdeleted == false)
         .ToList();
     }
 
     public List<Table> GetTables(int sectionId)
     {
-        var tables =  _dbo.Tables
+        var tables = _dbo.Tables
         .Where(t => t.Sectionid == sectionId && t.Isdeleted == false && t.Newstatus == 1)
         .ToList();
 
         return tables;
     }
 
-
+    public async Task<Customer?> GetCustomerByEmail(string email)
+    {
+        return await _dbo.Customers.FirstOrDefaultAsync(c => c.Email == email);
+    }
 
     #endregion
 
@@ -632,7 +635,7 @@ public class OrderAppRepository : IOrderAppRepository
                     {
                         Orderid = model.OrderId,
                         Itemid = item.ItemId,
-                        Availablequantity = item.ReadyQuantity ?? 0,
+                        Availablequantity = 0,
                         // Item.ItemName = item.ItemName,
                         // Inprogressquantity = item.Quantity,
                         // Readyquantity = 0,
@@ -704,7 +707,7 @@ public class OrderAppRepository : IOrderAppRepository
 
             // 3. Update related dining tables
             List<Tablegrouping>? tablesToUpdate = await _dbo.Tablegroupings
-                .Where(t => t.Orderid == model.OrderId)
+                .Where(t => t.Orderid == model.OrderId && !t.Isdeleted)
                 .ToListAsync();
 
             foreach (Tablegrouping? table in tablesToUpdate)
@@ -722,14 +725,25 @@ public class OrderAppRepository : IOrderAppRepository
                 Taxesandfee? tax = await _dbo.Taxesandfees.FindAsync(taxId);
                 if (tax != null)
                 {
-                    _dbo.Ordertaxmappings.Add(new Ordertaxmapping
+                    Ordertaxmapping? taxmaapping = new()
                     {
                         Orderid = model.OrderId,
                         Taxid = tax.Taxid,
                         Taxname = tax.Taxname,
                         Taxtype = tax.Taxtype,
                         Taxamount = tax.Taxvalue //Need to be add SubTotal
-                    });
+                    };
+                    await _dbo.Ordertaxmappings.AddAsync(taxmaapping);
+                    await _dbo.SaveChangesAsync();
+
+                    // _dbo.Ordertaxmappings.Add(new Ordertaxmapping
+                    // {
+                    //     Orderid = model.OrderId,
+                    //     Taxid = tax.Taxid,
+                    //     Taxname = tax.Taxname,
+                    //     Taxtype = tax.Taxtype,
+                    //     Taxamount = tax.Taxvalue //Need to be add SubTotal
+                    // });
                 }
             }
 
@@ -791,8 +805,8 @@ public class OrderAppRepository : IOrderAppRepository
                 order.Status = "Completed";
                 _dbo.Orders.Update(order);
                 await _dbo.SaveChangesAsync();
-                
-                
+
+
             }
 
             if (order.Status == "Completed")

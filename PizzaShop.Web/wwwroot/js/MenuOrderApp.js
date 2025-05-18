@@ -156,7 +156,7 @@ $(document).on('click', '#addToOrderBtn', function () {
 
         updateTotals();
         $('#ItemsDetails').modal('hide');
-        return; 
+        return;
     }
 
     /* 3. Brand‑new row → ask server for html  */
@@ -169,7 +169,7 @@ $(document).on('click', '#addToOrderBtn', function () {
             ItemName: itemName,
             BasePrice: basePrice,
             Quantity: 1,
-            MaxQuantity: qty, 
+            MaxQuantity: qty,
             Index: itemIndex,
             SelectedModifiers: selectedModifiers,
             OrderedQuantity: 1,
@@ -219,10 +219,21 @@ function updateTotals() {
     let totalTaxes = 0;
 
     // Add default taxes (those without checkbox)
+    // Add default taxes (those without checkbox)
     $('.default-tax-amount').each(function () {
-        const taxAmount = parseFloat($(this).text().replace('₹', '')) || 0;
-        totalTaxes += taxAmount;
+        const $tax = $(this); // wrap `this` with jQuery
+
+        if ($tax.hasClass('taxPercentage')) {
+            const taxPercentage = parseFloat($tax.text().replace('%', '')) || 0;
+            const taxAmount = (subtotal * taxPercentage) / 100;
+            $tax.text(`₹${taxAmount.toFixed(2)}`);
+            totalTaxes += taxAmount;
+        } else {
+            const taxAmount = parseFloat($tax.text().replace('₹', '')) || 0;
+            totalTaxes += taxAmount;
+        }
     });
+
 
     // Add optional taxes (those with checkbox only if checked)
     $('.tax-checkbox').each(function () {
@@ -291,7 +302,7 @@ function removeItem(index) {
 
 // called by the v‑card button
 async function OpenEditCustomerModal(orderId) {
-    
+
     new bootstrap.Modal('#editCustomerInMenuModal').show();
     const r = await fetch(`/OrderApp/GetOrderCustomer?orderId=${orderId}`);
     if (!r.ok) { toastr.error('Could not load customer'); return; }
@@ -315,8 +326,7 @@ function changeQuantity(index, delta, maxQuantity) {
     const qtyInput = document.querySelector(`#quantityInput_${index}`);
     let qty = parseInt(qtyInput.value) || 0;
 
-    if (delta == 1)
-    {
+    if (delta == 1) {
         if (qty < maxQuantity) {
             qty += delta;
         }
@@ -324,8 +334,7 @@ function changeQuantity(index, delta, maxQuantity) {
             toastr.warning(`You can select only ${maxQuantity} items`);
         }
     }
-    else
-    {
+    else {
         if (qty > 1) {
             qty += delta;
         }
@@ -420,7 +429,7 @@ function openItemInstructionModal(orderId, itemId) {
     debugger;
     $('#ItemDetailId').val(orderId);
     $('#instructionError').hide();
-    let hiddenOrderId = $("#hiddenOrderId").val();    
+    let hiddenOrderId = $("#hiddenOrderId").val();
 
     $('#ModalForItemInstruction').modal('show');
 
@@ -479,17 +488,17 @@ $('#ItemInstructionForm').submit(function (e) {
 //For Save Order
 function saveOrder() {
     var orderItems = [];
-    var selectedTaxes = []; 
+    var selectedTaxes = [];
 
     var urlParams = new URLSearchParams(window.location.search);
-    var orderId = $("#hiddenOrderId").val(); 
+    var orderId = $("#hiddenOrderId").val();
 
     $(".items").each(function (index) {
         var itemId = $(this).data("item-id");
 
         var itemName = $(this).find(".item-name").text();
 
-        var quantity = parseInt($(this).find(".qty-input").val());  
+        var quantity = parseInt($(this).find(".qty-input").val());
 
         var availableQty = parseInt($(this).find(".available-qty").val());
 
@@ -501,8 +510,8 @@ function saveOrder() {
 
         $(this).find(".modifier").each(function () {
             selectedModifiers.push({
-                modifierId: $(this).data("modifier-id"),  
-                modifierName: $(this).data("modifier-name"), 
+                modifierId: $(this).data("modifier-id"),
+                modifierName: $(this).data("modifier-name"),
                 rate: parseFloat($(this).data("modifier-price"))
             });
         });
@@ -518,8 +527,18 @@ function saveOrder() {
         });
     });
 
+    // Get Default Taxes
+    $(".defaultTax").each(function () {
+        // var taxAmount = parseFloat($(this).text().replace('₹', '')) || 0;
+        var taxId = parseInt($(this).data("tax-id"));
+
+        // if (taxAmount > 0) {
+        selectedTaxes.push(taxId);
+        // }
+    });
+
     $(".tax-checkbox:checked").each(function () {
-        selectedTaxes.push(parseInt($(this).val())); 
+        selectedTaxes.push(parseInt($(this).val()));
     });
 
     $.ajax({
@@ -542,7 +561,7 @@ function saveOrder() {
 
 // Complete Order Ajax call
 function completeOrder() {
-    var orderId = $("#hiddenOrderId").val(); 
+    var orderId = $("#hiddenOrderId").val();
 
     $.ajax({
         type: "POST",
@@ -558,7 +577,7 @@ function completeOrder() {
             else {
                 toastr.error(response.message);
                 $('#completeOrderModal').modal('hide');
-            } 
+            }
         },
         error: function (xhr) {
             toastr.error(xhr.responseText);
@@ -567,7 +586,7 @@ function completeOrder() {
 }
 
 function CancelOrder() {
-    var orderId = $("#hiddenOrderId").val(); 
+    var orderId = $("#hiddenOrderId").val();
 
     $.ajax({
         type: "POST",
@@ -581,7 +600,7 @@ function CancelOrder() {
             else {
                 toastr.error(response.message);
                 // $('#cancelOrderModal').modal('hide');
-            } 
+            }
         },
         error: function (xhr) {
             toastr.error(xhr.responseText);
@@ -632,7 +651,7 @@ function renderOrderItem(item, index) {
             Instruction: item.instruction || "",
             BasePrice: item.rate,
             Quantity: item.Quantity,
-            MaxQuantity : item.maxQuantity,
+            MaxQuantity: item.maxQuantity,
             SelectedModifiers: item.modifiers || []
         }),
         success: function (partialHtml) {
@@ -644,29 +663,27 @@ function renderOrderItem(item, index) {
     });
 }
 
-function quantityChange(e){
+function quantityChange(e) {
     var input = $(e.target);
     var maxQuantity = input.attr("data-maxQuantity");
     var currentQuantity = input.attr("data-currentValue");
     var updatedQuantity = input.val();
-    
-    if (updatedQuantity > 0)
-    {
+
+    if (updatedQuantity > 0) {
         if (+updatedQuantity > +maxQuantity) {
             toastr.warning(`You can select only ${maxQuantity} items`);
             $(input).val(currentQuantity);
-        }else{
-            $(input).attr("data-currentValue",updatedQuantity);
+        } else {
+            $(input).attr("data-currentValue", updatedQuantity);
         }
     }
-    else
-    {
+    else {
         if (+updatedQuantity < 1) {
             toastr.warning("You must select at least 1 item");
             $(input).val(1);
-        }else{
-            $(input).attr("data-currentValue",updatedQuantity);
+        } else {
+            $(input).attr("data-currentValue", updatedQuantity);
         }
     }
-    
+
 }

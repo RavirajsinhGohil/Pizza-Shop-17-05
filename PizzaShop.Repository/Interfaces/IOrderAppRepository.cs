@@ -30,6 +30,7 @@ public interface IOrderAppRepository
     Task<AddWaitingTokenForTableViewModel> GetWaitingTokenForUpdate(int tokenId);
     Task<List<Section>> GetSections();
     List<Table> GetTables(int sectionId);
+    Task<Customer?> GetCustomerByEmail(string email);
 
     #endregion
 
